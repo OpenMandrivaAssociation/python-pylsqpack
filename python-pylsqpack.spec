@@ -2,7 +2,7 @@
 
 Name:		python-pylsqpack
 Version:	0.3.19
-Release:	1
+Release:	2
 Summary:	Python wrapper for the ls-qpack QPACK library
 URL:		https://pypi.org/project/pylsqpack/
 License:	BSD-3-Clause
