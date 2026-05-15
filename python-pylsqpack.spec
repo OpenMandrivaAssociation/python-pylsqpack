@@ -1,35 +1,28 @@
 %define module pylsqpack
 
 Name:		python-pylsqpack
-Version:	0.3.19
-Release:	2
+Version:	0.3.24
+Release:	1
 Summary:	Python wrapper for the ls-qpack QPACK library
-URL:		https://pypi.org/project/pylsqpack/
 License:	BSD-3-Clause
 Group:		Development/Python
-Source0:	https://files.pythonhosted.org/packages/source/p/pylsqpack/%{module}-%{version}.tar.gz
-BuildSystem:	python
+URL:		https://pypi.org/project/pylsqpack/
+Source0:	https://files.pythonhosted.org/packages/source/p/%{module}/%{module}-%{version}.tar.gz#/%{name}-%{version}.tar.gz
 
-BuildRequires:	python
-BuildRequires:	pkgconfig(python3)
+BuildSystem:	python
+BuildRequires:	pkgconfig(python)
+BuildRequires:	python%{pyver}dist(pip)
 BuildRequires:	python%{pyver}dist(setuptools)
 BuildRequires:	python%{pyver}dist(setuptools-scm)
-
+BuildRequires:	python%{pyver}dist(wheel)
 
 %description
 Python wrapper for the ls-qpack QPACK library
 
-%prep
-%autosetup -n %{module}-%{version} -p1
-
-%build
-export CFLAGS="%{optflags}"
-%py_build
-
-%install
-%py_install
+%build -p
+export LDFLAGS="%{ldflags} -lpython%{pyver}"
 
 %files
-%{python3_sitearch}/%{module}
-%{python3_sitearch}/%{module}-%{version}.dist-info
-%license LICENSE
+%{python_sitearch}/%{module}
+%{python_sitearch}/%{module}-%{version}.dist-info
+
