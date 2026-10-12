@@ -2,7 +2,7 @@
 
 Name:		python-pylsqpack
 Version:	0.3.24
-Release:	2
+Release:	3
 Summary:	Python wrapper for the ls-qpack QPACK library
 License:	BSD-3-Clause
 Group:		Development/Python
@@ -20,6 +20,9 @@ BuildRequires:	python%{pyver}dist(wheel)
 Python wrapper for the ls-qpack QPACK library
 
 %build -p
+# The sdist is not a git checkout, so the versioning backend needs the version.
+export SETUPTOOLS_SCM_PRETEND_VERSION=%{version}
+
 export LDFLAGS="%{ldflags} -lpython%{pyver} -lm"
 
 %files
